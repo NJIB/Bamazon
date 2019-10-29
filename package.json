@@ -21,7 +21,9 @@
   },
   "dependencies": {
     "config-js": "^1.1.13",
+    "dotenv": "^8.2.0",
     "mysql": "^2.17.1",
-    "mysql-promise": "^5.0.0"
+    "mysql-promise": "^5.0.0",
+    "promise-mysql": "^4.1.1"
   }
 }

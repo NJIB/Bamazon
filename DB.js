@@ -1,9 +1,13 @@
+// Add code to read and set any environment variables with the dotenv package
+require("dotenv").config();
+
+// Add the code required to import the keys.js file and store it in a variable. */
+var password = require("./keys.js");
 
 /**
  * @see {@link https://www.npmjs.com/package/promise-mysql}
  */
 const mysql = require('promise-mysql');
-
 
 /**
  * Bring DB config in from separate file
@@ -26,27 +30,13 @@ class DB {
   }
 
   /**
- * Reads all songs for specified artist
+ * Reads all items from the auctions table
  * @return {Promise}
  */
-  async selectSongsByArtist(artist) {
-    console.log(`artist: ${artist}`);
+  async getAllItems() {
     return this.conn.query(
-        'SELECT artist,album,year FROM songs WHERE ?',
-        {
-          artist,
-        }
-    );
-  }
-
-
-  /**
- * Reads all artists who appear more than once in list
- * @return {Promise}
- */
-  async selectMultiArtists() {
-    return this.conn.query(
-        'SELECT artist,album,year FROM songs GROUP BY artist HAVING COUNT(*) > 1 ');
+      'SELECT product_name, department_name, price, stock_quantity FROM products',
+      );
   }
 }
 

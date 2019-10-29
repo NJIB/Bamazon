@@ -1,8 +1,9 @@
 const inquirer = require('inquirer');
 
 /**
+ * An auction
  */
-class StockList {
+class Auction {
   /**
      * @param {Object} dbConn db connection object
      */
@@ -18,9 +19,9 @@ class StockList {
     const item = await inquirer.prompt(
         {
           name: 'answer',
-          message: 'How many do you want to buy?',
+          message: 'What do you want to bid on?',
           type: 'list',
-          choices: items.map((it) => `${it.product_name}`),
+          choices: items.map((it) => `${it.item_name}`),
         }
     );
 
@@ -43,4 +44,4 @@ class StockList {
   }
 }
 
-module.exports = StockList;
+module.exports = Auction;
