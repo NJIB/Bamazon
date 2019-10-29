@@ -1,0 +1,27 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Bootcamp database homework exercise",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NJIB/Bamazon.git"
+  },
+  "author": "NJIB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NJIB/Bamazon/issues"
+  },
+  "homepage": "https://github.com/NJIB/Bamazon#readme",
+  "devDependencies": {
+    "inquirer": "^7.0.0"
+  },
+  "dependencies": {
+    "config-js": "^1.1.13",
+    "mysql": "^2.17.1",
+    "mysql-promise": "^5.0.0"
+  }
+}
