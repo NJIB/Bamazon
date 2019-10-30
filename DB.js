@@ -38,6 +38,24 @@ class DB {
       'SELECT product_name, department_name, price, stock_quantity FROM products',
       );
   }
+
+  updateStockQuantity(itemName, newStockQuantity) {
+    return this.conn.query(
+        'UPDATE products SET ? WHERE ?',
+        [
+          {
+            // product_name: itemName,
+            stock_quantity: newStockQuantity,
+
+          },
+          {
+            // stock_quantity: newStockQuantity,
+            product_name: itemName,
+
+          },
+        ]);
+  }
+
 }
 
 module.exports = DB;

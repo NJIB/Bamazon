@@ -8,6 +8,6 @@ module.exports = {
   user: 'root',
 
   // Your password
-  password: 'Frustr&t1on',
+  password: process.env.PASSWORD,
   database: 'bamazon_db',
 };

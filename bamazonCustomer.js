@@ -13,30 +13,33 @@ class StockList {
   /**
    *
    */
-  async getBidFromUser() {
+  async browseItems() {
     const items = await this.dbConn.getAllItems();
     const item = await inquirer.prompt(
         {
           name: 'answer',
-          message: 'How many do you want to buy?',
+          message: 'What you want to buy?',
           type: 'list',
           choices: items.map((it) => `${it.product_name}`),
+          // choices: items.map((it) => `${it.product_name} ($${it.price})`),
         }
     );
 
-    const bid = await inquirer.prompt(
+    const purchaseQuantity = await inquirer.prompt(
         {
           name: 'answer',
-          message: 'What is your bid (US $):',
+          message: 'How many would you like?',
         }
     );
 
-    const targetItem = items.find((it) => it.item_name == item.answer);
-    if (targetItem.highest_bid < bid.answer) {
-      await this.dbConn.updateItemWithBid(item.answer, bid.answer);
-      console.log(`You have the highest bid $${bid.answer} on: ${item.answer}`);
+    const selectedItem = items.find((it) => it.product_name == item.answer);
+    if (selectedItem.stock_quantity < purchaseQuantity.answer) {
+        console.log(`Sorry, there are not ${purchaseQuantity.answer} available to buy at this time.`);
     } else {
-      console.log(`Your bid of $${bid.answer} was not high enough.`);
+        let newStockQuantity = (selectedItem.stock_quantity - purchaseQuantity.answer);
+        console.log(`New stock quantity: ${newStockQuantity}`)
+        await this.dbConn.updateStockQuantity(item.answer, newStockQuantity);
+        console.log(`Congratulations - you have just bought ${purchaseQuantity.answer} ${item.answer}(s)!`);  
     }
 
     return;
