@@ -41,7 +41,7 @@ class StockList {
         await this.dbConn.updateStockQuantity(item.answer, newStockQuantity);
         console.log(`Congratulations - you have just bought ${purchaseQuantity.answer} ${item.answer}(s)!`);  
     }
-
+    
     return;
   }
 }

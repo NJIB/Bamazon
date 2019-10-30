@@ -24,9 +24,32 @@ async function run() {
 }
 
 async function customerShops(db) {
-            const stockList = new StockList(db);
-            await stockList.browseItems();
-            customerShops(db);
+    const stockList = new StockList(db);
+    await stockList.browseItems();
+
+    // Give user the chance to continue shopping
+    // const anotherPurchase = await 
+    inquirer.prompt([
+        {
+            name: 'list',
+            message: 'Would you like to buy something else (Y, N) ?',
+            name: 'anotherPurchase',
+            choices: ('Yes', 'No'),
+        }
+    ])
+        .then(function (inquirerResponse) {
+            switch (inquirerResponse.anotherPurchase) {
+                case 'Y':
+                    customerShops(db);
+                    break;
+                case 'N':
+                    return;
+                    break;
+            }
+        });
+
+
+    // customerShops(db);
 }
 
 run();
