@@ -38,18 +38,16 @@ async function customerShops(db) {
         }
     ])
         .then(function (inquirerResponse) {
-            switch (inquirerResponse.anotherPurchase) {
-                case 'Y':
+            switch (inquirerResponse.anotherPurchase.toLowerCase()) {
+                case 'y':
                     customerShops(db);
                     break;
-                case 'N':
+                case 'n':
+                    console.log("Thanks for shopping!")
                     return;
                     break;
             }
         });
-
-
-    // customerShops(db);
 }
 
 run();
