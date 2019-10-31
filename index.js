@@ -20,6 +20,27 @@ async function run() {
     const db = new DB();
     await db.createConnection();
 
+    inquirer.prompt([
+        {
+            type: 'list',
+            message: 'Are you a Customer or Bamazon Staff Member (Manager) ?',
+            name: 'userPath',
+            choices: ('Customer', 'Manager'),
+        }
+    ])
+        .then(function (inquirerResponse) {
+            switch (inquirerResponse.userPath) {
+                case 'Customer':
+                    customerShops(db);
+                    break;
+                case 'Bamazon Staff Member':
+                    bamazonManager(db);
+                    break;
+            }
+        });
+}
+
+
     customerShops(db, 0);
 }
 
@@ -31,7 +52,7 @@ async function customerShops(db) {
     // const anotherPurchase = await 
     inquirer.prompt([
         {
-            name: 'list',
+            type: 'list',
             message: 'Would you like to buy something else (Y, N) ?',
             name: 'anotherPurchase',
             choices: ('Yes', 'No'),
