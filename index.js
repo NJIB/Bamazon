@@ -7,6 +7,7 @@ const inquirer = require('inquirer');
 // Reference source code files
 const DB = require('./DB');
 let StockList = require("./bamazonCustomer");
+let InventoryList = require("./bamazonManager");
 
 // Display everything available to buy
 
@@ -20,9 +21,8 @@ async function run() {
     const db = new DB();
     await db.createConnection();
 
-
-    
-    customerShops(db, 0);
+    // customerShops(db, 0);
+    managerView(db, 0);
 }
 
 async function customerShops(db) {
@@ -51,5 +51,34 @@ async function customerShops(db) {
             }
         });
 }
+
+async function managerView(db) {
+    const inventoryList = new InventoryList(db);
+    console.log(`Got to here!! ${InventoryList}`);
+    await inventoryList.inventoryItems();
+
+    // // Give user the chance to continue shopping
+    // // const anotherPurchase = await 
+    // inquirer.prompt([
+    //     {
+    //         name: 'list',
+    //         message: 'Would you like to buy something else (Y, N) ?',
+    //         name: 'anotherPurchase',
+    //         choices: ('Yes', 'No'),
+    //     }
+    // ])
+    //     .then(function (inquirerResponse) {
+    //         switch (inquirerResponse.anotherPurchase.toLowerCase()) {
+    //             case 'y':
+    //                 customerShops(db);
+    //                 break;
+    //             case 'n':
+    //                 console.log("Thanks for shopping!")
+    //                 return;
+    //                 break;
+    //         }
+    //     });
+}
+
 
 run();

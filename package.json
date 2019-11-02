@@ -2,10 +2,21 @@
   "name": "bamazon",
   "version": "1.0.0",
   "description": "Bootcamp database homework exercise",
-  "main": "bamazonCustomer.js",
+  "main": "index.js",
+  "dependencies": {
+    "cli-table": "^0.3.1",
+    "config-js": "^1.1.13",
+    "dotenv": "^8.2.0",
+    "inquirer": "^7.0.0",
+    "mysql": "^2.17.1",
+    "mysql-promise": "^5.0.0",
+    "nodemon": "^1.19.4",
+    "parse-json": "^5.0.0",
+    "promise-mysql": "^4.1.1"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    // "watch": "nodemon index.js"
+    "test": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -16,14 +27,5 @@
   "bugs": {
     "url": "https://github.com/NJIB/Bamazon/issues"
   },
-  "homepage": "https://github.com/NJIB/Bamazon#readme",
-  "devDependencies": {
-    "inquirer": "^7.0.0",
-    "nodemon": "^1.19.4"
-  },
-  "dependencies": {
-    "config-js": "^1.1.13",
-    "dotenv": "^8.2.0",
-    "promise-mysql": "^4.1.1"
-  }
+  "homepage": "https://github.com/NJIB/Bamazon#readme"
 }

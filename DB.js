@@ -44,12 +44,10 @@ class DB {
         'UPDATE products SET ? WHERE ?',
         [
           {
-            // product_name: itemName,
             stock_quantity: newStockQuantity,
 
           },
           {
-            // stock_quantity: newStockQuantity,
             product_name: itemName,
 
           },
