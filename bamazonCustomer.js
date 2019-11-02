@@ -20,7 +20,7 @@ class StockList {
           name: 'answer',
           message: 'What you want to buy?',
           type: 'list',
-          choices: items.map((it) => `${it.product_name}`),
+          choices: items.map((it) => `${it.product_name}`)
           // choices: items.map((it) => `${it.product_name} ($${it.price})`),
         }
     );

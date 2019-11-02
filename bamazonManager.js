@@ -22,18 +22,9 @@ class InventoryList {
 
     const items = await this.dbConn.getAllItems();
 
-console.log(items);
-
 const vals = items.map((el) => Object.values(el));
 
 table.push(...vals);
-
-      // table.push([
-      //   items.map((it) => `${it.product_name}`),
-      //   items.map((it) => `${it.department_name}`),
-      //   items.map((it) => `${it.price}`),
-      //   items.map((it) => `${it.stock_quantity}`)
-      // ]);
 
       console.log(table.toString());
     }

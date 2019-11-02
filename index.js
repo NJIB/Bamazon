@@ -21,8 +21,24 @@ async function run() {
     const db = new DB();
     await db.createConnection();
 
-    customerShops(db, 0);
-    // managerView(db, 0);
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'userPath',
+            message: 'Are you a Shopper or a Bamazon Staff Member ?',
+            choices: ['Shopper', 'Staff Member'],
+        }
+    ])
+        .then(function (inquirerResponse) {
+            switch (inquirerResponse.userPath) {
+                case 'Shopper':
+                    customerShops(db);
+                    break;
+                case 'Staff Member':
+                    managerView(db);
+                    break;
+            }
+        });
 }
 
 async function customerShops(db) {
@@ -33,10 +49,10 @@ async function customerShops(db) {
     // const anotherPurchase = await 
     inquirer.prompt([
         {
-            name: 'list',
-            message: 'Would you like to buy something else (Y, N) ?',
+            type: 'list',
+            message: 'Would you like to buy something else?',
             name: 'anotherPurchase',
-            choices: ('Yes', 'No'),
+            choices: ['Yes', 'No'],
         }
     ])
         .then(function (inquirerResponse) {
@@ -54,7 +70,6 @@ async function customerShops(db) {
 
 async function managerView(db) {
     const inventoryList = new InventoryList(db);
-    console.log(`Got to here!! ${InventoryList}`);
     await inventoryList.inventoryItems();
 }
 
