@@ -56,11 +56,11 @@ async function customerShops(db) {
         }
     ])
         .then(function (inquirerResponse) {
-            switch (inquirerResponse.anotherPurchase.toLowerCase()) {
-                case 'y':
+            switch (inquirerResponse.anotherPurchase) {
+                case 'Yes':
                     customerShops(db);
                     break;
-                case 'n':
+                case 'No':
                     console.log("Thanks for shopping!")
                     return;
                     break;
